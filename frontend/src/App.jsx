@@ -32,28 +32,38 @@ export default function App() {
   return (
     <>
       <div className="topbar">
-        <span className="db-mark">DB</span>
-        <h1>Claude Code Harness Explorer</h1>
-        <span className="subtitle">Deutsche Bahn house style</span>
+        <div className="logo-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L15.5 5.5V12.5L9 16L2.5 12.5V5.5L9 2Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+            <circle cx="9" cy="9" r="2.5" fill="white" />
+          </svg>
+        </div>
+        <span className="topbar-title">Claude Code Harness</span>
+        <div className="topbar-divider" aria-hidden="true" />
+        <span className="topbar-subtitle">Explorer</span>
+        <span className="topbar-badge">v1.0</span>
       </div>
 
       <main className="app">
         <section className="intro">
-          <h2>How does Claude Code actually work?</h2>
+          <div className="intro-eyebrow">Interactive Visualisation</div>
+          <h2>How Claude Code works under the hood</h2>
           <p>
-            The Claude Code harness runs a loop every time you talk to Claude.
-            Follow the red pulse around the ring, or click any stage to read
-            what it does. The dashed node is the <strong>permission gate</strong>
-            &mdash; the safety checkpoint between what the model asks for and
-            what actually runs on your machine.
+            The Claude Code harness runs a loop each time you interact with Claude.
+            Follow the pulse around the ring, or click any stage to read what it does.
+            The dashed node is the <strong>permission gate</strong> — the safety
+            checkpoint between what the model requests and what runs on your machine.
           </p>
         </section>
 
         <section className="stage">
           <div className="viz-card">
             {loadError && (
-              <p style={{ color: 'var(--db-red-dark)', margin: 0 }}>
-                Could not load visualization content: {loadError}
+              <p className="load-error">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7.25 4.75a.75.75 0 0 1 1.5 0v4a.75.75 0 0 1-1.5 0v-4zm.75 7a.875.875 0 1 1 0-1.75.875.875 0 0 1 0 1.75z"/>
+                </svg>
+                Could not load visualization: {loadError}
               </p>
             )}
             {!loadError && loopNodes.length > 0 && (
@@ -65,7 +75,7 @@ export default function App() {
           </div>
 
           <aside className="concepts">
-            <h3>Cross-cutting concepts</h3>
+            <h3 className="concepts-heading">Cross-cutting concepts</h3>
             {conceptNodes.map((c) => (
               <button
                 key={c.id}
@@ -81,8 +91,8 @@ export default function App() {
         </section>
 
         <footer className="footer">
-          Demo app &middot; no sessions, nothing stored &middot; chat runs
-          against a locally-hosted Ollama model on your machine.
+          Demo app &middot; no sessions stored &middot; chat runs against a
+          locally-hosted Ollama model
         </footer>
       </main>
 
