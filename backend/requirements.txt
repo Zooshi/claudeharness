@@ -1,0 +1,5 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.32,<1
+pydantic-ai-slim[openai]>=0.0.50,<2
+pydantic>=2.9,<3
+logfire>=2.11,<5
